@@ -5,4 +5,7 @@
     2. We will need to know the size of the queue and maybe how many objects have been added/deleted.
 
 3. 
-    1. 
+    1. We will need a loop of some sort like a do while or a for loop. We will also need to be able to change around our lins and make sure each node points to the correct next node.
+    2. We will need to know the size, every value for each node, and what node each node points at. 
+
+4. Ok!

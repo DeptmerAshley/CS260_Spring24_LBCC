@@ -21,6 +21,8 @@ public:
 	void push_front(int); // insert a new value at the front of the list 
 	void push_back(int); // insert a new value at the back of the list 
 	void insert(int val, int index); // insert a new value in the list at the specified index 
+
+	int remove(int); //remove a value at a selected position and return it
 };
 
 #endif

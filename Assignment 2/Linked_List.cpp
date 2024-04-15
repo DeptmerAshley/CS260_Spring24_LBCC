@@ -81,3 +81,28 @@ void Linked_List::insert(int value, int index) {
     }
     delete inserting;
 }
+
+int Linked_List::remove(int index) {
+    Node* removing = new Node;
+    Node* hold = this->head;
+    int count = 0;
+
+    if (index > this->length) {
+        delete removing;
+        return;
+    } 
+    // else if(this->length == index) {
+        
+    // } 
+    // else if(index == 0) {
+    //     push_front(value);
+    // }
+    else {
+        do {
+            count += 1;
+            hold = hold->next_node;
+        } while (count != (index - 1));
+        removing->value = hold->value;
+    }
+    return removing->value;
+}
