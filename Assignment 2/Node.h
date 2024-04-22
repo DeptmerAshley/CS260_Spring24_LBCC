@@ -8,10 +8,11 @@ class Node {
     Node* next_node;
 
     Node& operator=(const Node& old) {
-		this->value = old.value;
-		this->next_node = old.next_node;
-        this->prev_node = old.prev_node;
-	}
+		  this->value = old.value;
+		  this->next_node = old.next_node;
+      //this->prev_node = old.prev_node;
+      return *this;
+	  }
 
 };
 

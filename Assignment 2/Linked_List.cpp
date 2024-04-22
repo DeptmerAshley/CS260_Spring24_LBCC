@@ -15,11 +15,12 @@ int Linked_List::get_length() {
 
 void Linked_List::print() {
     Node* current = head;
+    cout << "[";
     while(current->next_node != NULL) { 
-        cout << current->value << " "; 
+        cout << current->value << ", "; 
         current = current->next_node; 
     };
-    cout << current->value << endl;
+    cout << current->value << "]" << endl;
 }
 
 void Linked_List::clear() {
@@ -36,21 +37,21 @@ void Linked_List::clear() {
 
 void Linked_List::push_front(int value) {
     Node* beginning = new Node;
-    beginning->next_node = head; 
+    beginning->next_node = this->head; 
     beginning->value = value;
-    head = beginning;
+    this->head = beginning;
     this->length += 1;
 }
 
-void Linked_List::push_back(int value) {
+void Linked_List::enqueue(int value) {
     Node* ending = new Node;
     ending->value = value;
     ending->next_node = NULL;
-    Node* last = head;
+    Node* find_last = head;
     do { 
-        last = last->next_node;
-    } while(last->next_node != NULL);
-    last->next_node = ending;
+        find_last = find_last->next_node;
+    } while(find_last->next_node != NULL);
+    find_last->next_node = ending;
     this->length += 1;
 }
 
@@ -61,10 +62,10 @@ void Linked_List::insert(int value, int index) {
 
     if (index > this->length) {
         delete inserting;
-        return;
+        //return;
     } 
     else if(this->length == index) {
-        push_back(value);
+        enqueue(value);
     } 
     else if(index == 0) {
         push_front(value);
@@ -79,7 +80,7 @@ void Linked_List::insert(int value, int index) {
         hold->next_node = inserting;
         this->length += 1;
     }
-    delete inserting;
+    //delete inserting;
 }
 
 int Linked_List::remove(int index) {
@@ -89,7 +90,7 @@ int Linked_List::remove(int index) {
 
     if (index > this->length) {
         delete removing;
-        return;
+        //return;
     } 
     // else if(this->length == index) {
         
@@ -105,4 +106,18 @@ int Linked_List::remove(int index) {
         removing->value = hold->value;
     }
     return removing->value;
+}
+
+
+int Linked_List::dequeue(bool remove) {
+    Node* hold = this->head;
+    int returnValue = hold->value;
+    if (remove == true) {
+        this->head = head->next_node;
+        delete hold;
+        return returnValue;
+    }
+    else {
+        return returnValue;
+    }
 }

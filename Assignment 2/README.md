@@ -9,3 +9,30 @@
     2. We will need to know the size, every value for each node, and what node each node points at. 
 
 4. Ok!
+
+Update log for week 3 assignment:
+
+void Linked_List::enqueue(int value) {
+    Node* ending = new Node;
+    ending->value = value;
+    ending->next_node = NULL;
+    Node* find_last = head;
+    do { 
+        find_last = find_last->next_node;
+    } while(find_last->next_node != NULL);
+    find_last->next_node = ending;
+    this->length += 1;
+}
+
+int Linked_List::dequeue(bool remove) {
+    Node* hold = this->head;
+    int returnValue = hold->value;
+    if (remove == true) {
+        this->head = head->next_node;
+        delete hold;
+        return returnValue;
+    }
+    else {
+        return returnValue;
+    }
+}
