@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
     Linked_List tester;
-
+    //qwerty
     cout << "\nAdding initial values to our linked list: ";
     tester.push_front(1);
     tester.push_front(2);
