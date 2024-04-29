@@ -22,8 +22,8 @@ public:
 	void enqueue(int); // insert a new value at the back of the list 
 	int dequeue(bool remove); //remove value at the front of the list and return its value
 	void insert(int val, int index); // insert a new value in the list at the specified index 
-
 	int remove(int); //remove a value at a selected position and return it
+	int get(int); //finds a positions and returns its value without removing it
 };
 
 #endif

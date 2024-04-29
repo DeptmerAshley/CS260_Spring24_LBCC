@@ -47,65 +47,80 @@ void Linked_List::enqueue(int value) {
     Node* ending = new Node;
     ending->value = value;
     ending->next_node = NULL;
-    Node* find_last = head;
+    Node* hold = head;
     do { 
-        find_last = find_last->next_node;
-    } while(find_last->next_node != NULL);
-    find_last->next_node = ending;
+        hold = hold->next_node;
+    } while(hold->next_node != NULL);
+    hold->next_node = ending;
     this->length += 1;
 }
 
-void Linked_List::insert(int value, int index) {
+void Linked_List::insert(int value, int position) {
     Node* inserting = new Node;
+    inserting->value = value;
     Node* hold = this->head;
-    int count = 0;
+    int count = 1;
 
-    if (index > this->length) {
+    if (position > this->length) {
         delete inserting;
-        //return;
+        cout << "\nERROR: Entered value larger than the size of the lost.\n";
     } 
-    else if(this->length == index) {
+    else if(position == this->length) {
         enqueue(value);
     } 
-    else if(index == 0) {
+    else if(position == 1) {
         push_front(value);
     }
     else {
         do {
             count += 1;
             hold = hold->next_node;
-        } while (count != (index - 1));
-        inserting->value = value;
+        } while (count != (position - 1));
         inserting->next_node = hold->next_node;
         hold->next_node = inserting;
         this->length += 1;
     }
-    //delete inserting;
 }
 
-int Linked_List::remove(int index) {
+int Linked_List::remove(int position) {
     Node* removing = new Node;
     Node* hold = this->head;
-    int count = 0;
+    int count = 1;
+    int value;
 
-    if (index > this->length) {
+    if (position > this->length) {
         delete removing;
-        //return;
+        cout << "\nERROR: Entered value larger than the size of the lost.\n";
     } 
-    // else if(this->length == index) {
-        
-    // } 
-    // else if(index == 0) {
-    //     push_front(value);
-    // }
+    else if(position == this->length) {
+        do {
+            count += 1;
+            hold = hold->next_node;
+        } while (count != (position - 1));
+        removing = hold->next_node;
+        hold->next_node = NULL;
+        value = removing->value;
+        delete removing;
+        this->length -= 1;
+        return value;
+    } 
+    else if(position == 1) {
+        value = dequeue(true);
+        return value;
+    }
     else {
         do {
             count += 1;
             hold = hold->next_node;
-        } while (count != (index - 1));
-        removing->value = hold->value;
+        } while (count != (position - 1));
+        removing = hold->next_node;
+        hold->next_node = removing->next_node;
+        value = removing->value;
+        delete removing;
+        this->length -= 1;
+        return value;
     }
-    return removing->value;
+    return value;
 }
 
 
@@ -115,9 +130,37 @@ int Linked_List::dequeue(bool remove) {
     if (remove == true) {
         this->head = head->next_node;
         delete hold;
+        this->length -= 1;
         return returnValue;
     }
     else {
         return returnValue;
     }
+}
+
+int Linked_List::get(int position) {
+    Node* hold = this->head;
+    int count = 0;
+
+    if (position > this->length) {
+        cout << "\nERROR: Entered value larger than the size of the lost.\n";
+    } 
+    else if(position == this->length) {
+        do {
+            count += 1;
+            hold = hold->next_node;
+        } while (hold->next_node != NULL);
+        return hold->value;
+    } 
+    else if(position == 1) {
+        dequeue(false);
+    }
+    else {
+        do {
+            count += 1;
+            hold = hold->next_node;
+        } while (count != (position - 1));
+        return hold->value;
+    }
+    return hold->value;
 }
