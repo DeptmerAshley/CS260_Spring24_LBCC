@@ -15,12 +15,17 @@ int Linked_List::get_length() {
 
 void Linked_List::print() {
     Node* current = head;
-    cout << "[";
-    while(current->next_node != NULL) { 
-        cout << current->value << ", "; 
-        current = current->next_node; 
-    };
-    cout << current->value << "]" << endl;
+    if (this->head == NULL) {
+        cout << "\nError: No list to print\n";
+    }
+    else {
+        cout << "[";
+        while(current->next_node != NULL) { 
+            cout << current->value << ", "; 
+            current = current->next_node; 
+        };
+        cout << current->value << "]" << endl;
+    }
 }
 
 void Linked_List::clear() {
