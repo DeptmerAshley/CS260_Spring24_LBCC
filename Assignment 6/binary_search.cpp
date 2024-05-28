@@ -60,20 +60,15 @@ Node* BST::removeRec(Node* node, int value) {
             return temp;
         }
         
-        Node* temp = minValueNode(node->right);
+        Node* temp = node->right;
+        while (temp && temp->left != nullptr) {
+            temp = temp->left;
+        }
         node->data = temp->data;
         node->right = removeRec(node->right, temp->data);
     }
-    
-    return node;
-}
 
-Node* BST::minValueNode(Node* node) {
-    Node* current = node;
-    while (current && current->left != nullptr) {
-        current = current->left;
-    }
-    return current;
+    return node;
 }
 
 bool BST::searchRec(Node* node, int value) {

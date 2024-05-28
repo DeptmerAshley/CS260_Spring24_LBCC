@@ -30,9 +30,6 @@ private:
     //Recursive function to remove a value from the BST
     Node* removeRec(Node* node, int value);
 
-    // Helper function to find the node with the minimum value in the BST
-    Node* minValueNode(Node* node);
-
     // Recursive function to search for a value in the BST
     bool searchRec(Node* node, int value);
     

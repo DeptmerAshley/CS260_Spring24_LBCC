@@ -23,5 +23,3 @@ private:
     int findSlot(const string& value);
 };
 
-
-

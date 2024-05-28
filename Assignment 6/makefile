@@ -5,7 +5,7 @@ RM=rm -f
 SRCS=binary_search.cpp main.cpp 
 OBJS=$(subst .cpp,.o,$(SRCS))
 
-all: main test #chatgpt
+all: main 
 
 main: binary_search.o
 	$(CXX) main.cpp -o main binary_search.o 
@@ -17,4 +17,4 @@ clean:
 	$(RM) $(OBJS)
 
 distclean:
-	$(RM) main testing
+	$(RM) main 
