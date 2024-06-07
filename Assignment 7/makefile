@@ -7,11 +7,14 @@ OBJS=$(subst .cpp,.o,$(SRCS))
 
 all: main
 
-main: hash.o
-	$(CXX) main.cpp -o main hash.o 
+main: hash.o doublehash.o
+	$(CXX) main.cpp -o main hash.o doublehash.o
 
-hash.o: hash.h hash.h
+hash.o: hash.h
 	$(CXX) -c hash.cpp
+
+doublehash.o: doublehash.o
+	$(CXX) -c doublehash.cpp
 
 clean:
 	$(RM) $(OBJS)

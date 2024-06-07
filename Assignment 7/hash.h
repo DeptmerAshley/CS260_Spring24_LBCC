@@ -1,3 +1,6 @@
+#ifndef HASH_H
+#define HASH_H
+
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -23,3 +26,4 @@ private:
     int findSlot(const string& value);
 };
 
+#endif
